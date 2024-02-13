@@ -8,7 +8,6 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import mybehavesteps.MyBehaveSteps;
 import org.apache.hc.core5.http.HttpStatus;
-import org.jbehave.core.annotations.Given;
 import org.junit.Test;
 
 public class MyBehaveStepsTest {
