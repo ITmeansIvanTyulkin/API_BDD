@@ -57,6 +57,16 @@ public class MyBehaveStepsTest {
         responseCreate.assertThat().statusCode(HttpStatus.SC_OK);
     }
 
+    @Test
+    @DisplayName("Тест на проверку получения необходимых температурных данных погоды в Лондоне.")
+    @Description("Проверка корректности работы метода распарсивания JSON.")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("ссылка на таск")
+    public void getWeatherTemperatureLondon() {
+        step = new MyBehaveSteps();
+        step.getDataLondonWeather();
+        // проверка
+    }
 
 
 

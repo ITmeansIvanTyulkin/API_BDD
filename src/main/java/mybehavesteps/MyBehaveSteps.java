@@ -3,6 +3,7 @@ package mybehavesteps;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import jdk.jfr.Description;
@@ -71,9 +72,35 @@ public class MyBehaveSteps {
                 .then().log().all();
     }
 
+    @Step("Получаю необходимые данные из JSON по погоде в Лондоне.")
+    public void getDataLondonWeather() {
+        String response = getSpec()
+                .when()
+                .get(Service.LONDON)
+                .then()
+                .log().all()
+                .extract().response().asString();
+
+        JsonPath jsonPath = new JsonPath(response);
+        String city = jsonPath.getString("location.name");
+        Double temperature = jsonPath.getDouble("current.temp_c");
+
+        if (city != null) {
+            System.out.println("Город: " + city);
+        } else {
+            System.out.println("Информация о городе недоступна");
+        }
+
+        if (temperature != null) {
+            System.out.println("Температура: " + temperature);
+        } else {
+            System.out.println("Информация о температуре недоступна");
+        }
 
 
-    // методы распарсивания JSON
+
+        // методы распарсивания JSON
 
 
-}
+    }
+    }
