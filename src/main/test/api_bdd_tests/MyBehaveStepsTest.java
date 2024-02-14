@@ -8,7 +8,12 @@ import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.ValidatableResponse;
 import mybehavesteps.MyBehaveSteps;
 import org.apache.hc.core5.http.HttpStatus;
+import org.junit.Assert;
 import org.junit.Test;
+import service.Service;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class MyBehaveStepsTest {
     private MyBehaveSteps step;
@@ -59,13 +64,19 @@ public class MyBehaveStepsTest {
 
     @Test
     @DisplayName("Тест на проверку получения необходимых температурных данных погоды в Лондоне.")
-    @Description("Проверка корректности работы метода распарсивания JSON.")
+    @Description("Проверка сравнения ожидаемого результата с актуальным с учётом дельты.")
     @Severity(SeverityLevel.NORMAL)
     @TmsLink("ссылка на таск")
     public void getWeatherTemperatureLondon() {
         step = new MyBehaveSteps();
-        step.getDataLondonWeather();
-        // проверка
+        Double actualTemperature = step.getDataLondonWeather();
+        if (Math.abs(Service.expectedTemperature - actualTemperature) <= Service.delta) {
+            Service.LOGGER.info(Service.GREEN + "Температура соответствует ожидаемой. Ожидаемая температура: " + Service.
+                    RESET + Service.expectedTemperature + Service.GREEN + " Текущая температура: " + Service.
+                    RESET + actualTemperature + Service.GREEN + " Дельта при этом равна: " + Service.RESET + Service.delta);
+        }
+        assertEquals(Service.BLUE + "Температура не соответствует ожидаемой. " + Service.
+                RESET, Service.expectedTemperature, actualTemperature, Service.delta);
     }
 
 

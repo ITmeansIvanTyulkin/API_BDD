@@ -30,5 +30,8 @@ public interface Service {
     String NEW_YORK = BASE_URI + currentWeather + key + token + queryParameter + valueNewYork;
     String ROME = BASE_URI + currentWeather + key + token + queryParameter + valueRome;
 
-// https://api.weatherapi.com/v1/current.json?q=London
+    // Эталонные значения
+    String expectedCity = "London";
+    double expectedTemperature = 12.0;
+    double delta = 1.0; // Дельта для сравнения температуры
 }

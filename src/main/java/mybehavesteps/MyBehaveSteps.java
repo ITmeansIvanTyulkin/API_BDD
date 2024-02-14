@@ -6,12 +6,9 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import jdk.jfr.Description;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import service.Service;
 
 public class MyBehaveSteps {
@@ -73,7 +70,7 @@ public class MyBehaveSteps {
     }
 
     @Step("Получаю необходимые данные из JSON по погоде в Лондоне.")
-    public void getDataLondonWeather() {
+    public Double getDataLondonWeather() {
         String response = getSpec()
                 .when()
                 .get(Service.LONDON)
@@ -88,19 +85,14 @@ public class MyBehaveSteps {
         if (city != null) {
             System.out.println("Город: " + city);
         } else {
-            System.out.println("Информация о городе недоступна");
+            System.out.println("Информация о городе недоступна.");
         }
 
         if (temperature != null) {
             System.out.println("Температура: " + temperature);
         } else {
-            System.out.println("Информация о температуре недоступна");
+            System.out.println("Информация о температуре недоступна.");
         }
-
-
-
-        // методы распарсивания JSON
-
-
+        return temperature;
     }
-    }
+}
