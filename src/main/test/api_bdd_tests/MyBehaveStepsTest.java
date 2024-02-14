@@ -70,15 +70,31 @@ public class MyBehaveStepsTest {
     public void getWeatherTemperatureLondon() {
         step = new MyBehaveSteps();
         Double actualTemperature = step.getDataLondonWeather();
-        if (Math.abs(Service.expectedTemperature - actualTemperature) <= Service.delta) {
+        if (Math.abs(Service.expectedTemperatureLondon - actualTemperature) <= Service.deltaLondon) {
             Service.LOGGER.info(Service.GREEN + "Температура соответствует ожидаемой. Ожидаемая температура: " + Service.
-                    RESET + Service.expectedTemperature + Service.GREEN + " Текущая температура: " + Service.
-                    RESET + actualTemperature + Service.GREEN + " Дельта при этом равна: " + Service.RESET + Service.delta);
+                    RESET + Service.expectedTemperatureLondon + Service.GREEN + " Текущая температура: " + Service.
+                    RESET + actualTemperature + Service.GREEN + " Дельта при этом равна: " + Service.RESET + Service.deltaLondon);
         }
         assertEquals(Service.BLUE + "Температура не соответствует ожидаемой. " + Service.
-                RESET, Service.expectedTemperature, actualTemperature, Service.delta);
+                RESET, Service.expectedTemperatureLondon, actualTemperature, Service.deltaLondon);
     }
 
+    @Test
+    @DisplayName("Тест на проверку получения необходимых температурных данных погоды в Москве.")
+    @Description("Проверка сравнения ожидаемого результата с актуальным с учётом дельты.")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink("ссылка на таск")
+    public void getWeatherTemperatureMoscow() {
+        step = new MyBehaveSteps();
+        Double actualTemperature = step.getDataMoscowWeather();
+        if (Math.abs(Service.expectedTemperatureMoscow - actualTemperature) <= Service.deltaMoscow) {
+            Service.LOGGER.info(Service.GREEN + "Температура соответствует ожидаемой. Ожидаемая температура: " + Service.
+                    RESET + Service.expectedTemperatureMoscow + Service.GREEN + " Текущая температура: " + Service.
+                    RESET + actualTemperature + Service.GREEN + " Дельта при этом равна: " + Service.RESET + Service.deltaMoscow);
+        }
+        assertEquals(Service.BLUE + "Температура не соответствует ожидаемой. " + Service.
+                RESET, Service.expectedTemperatureMoscow, actualTemperature, Service.deltaMoscow);
+    }
 
 
 

@@ -30,8 +30,19 @@ public interface Service {
     String NEW_YORK = BASE_URI + currentWeather + key + token + queryParameter + valueNewYork;
     String ROME = BASE_URI + currentWeather + key + token + queryParameter + valueRome;
 
-    // Эталонные значения
-    String expectedCity = "London";
-    double expectedTemperature = 12.0;
-    double delta = 1.0; // Дельта для сравнения температуры
+    // Эталонные значения для Лондона.
+    String expectedCityLondon = "London";
+    double expectedTemperatureLondon = 12.0;
+    double deltaLondon = 1.0; // Дельта для сравнения температуры
+
+    // Эталонные значения для Москвы.
+    String expectedCityMoscow = "London";
+    double expectedTemperatureMoscow = -9.0;
+    double deltaMoscow = 1.0;
+
+
+
+
+
+
 }

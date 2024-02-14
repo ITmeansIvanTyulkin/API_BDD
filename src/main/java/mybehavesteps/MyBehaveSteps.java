@@ -78,6 +78,24 @@ public class MyBehaveSteps {
                 .log().all()
                 .extract().response().asString();
 
+        jsonParseMethod(response);
+        return jsonParseMethod(response);
+    }
+
+    @Step("Получаю необходимые данные из JSON по погоде в Москве.")
+    public Double getDataMoscowWeather() {
+        String response = getSpec()
+                .when()
+                .get(Service.MOSCOW)
+                .then()
+                .log().all()
+                .extract().response().asString();
+
+        jsonParseMethod(response);
+        return jsonParseMethod(response);
+    }
+
+    private Double jsonParseMethod(String response) {
         JsonPath jsonPath = new JsonPath(response);
         String city = jsonPath.getString("location.name");
         Double temperature = jsonPath.getDouble("current.temp_c");
