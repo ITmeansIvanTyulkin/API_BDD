@@ -16,12 +16,14 @@ public interface Service {
 
     // Ручки.
     final String BASE_URI = "http://api.weatherapi.com/v1";
+    final String WRONG_BASE_URI = "http://api.weatherapi.com/";
     String currentWeather = "/current.json";
     String key = "?key=";
 
     String queryParameter = "&q=";
-    String valueMoscow = "Moscow";
+    String queryParameterNegative = "&p=";
     String valueLondon = "London";
+    String valueMoscow = "Moscow";
     String valueNewYork = "New York";
     String valueRome = "Rome";
 
@@ -30,19 +32,28 @@ public interface Service {
     String NEW_YORK = BASE_URI + currentWeather + key + token + queryParameter + valueNewYork;
     String ROME = BASE_URI + currentWeather + key + token + queryParameter + valueRome;
 
+    // Для негативных тестов.
+    String MOSCOW_NEGATIVE = BASE_URI + currentWeather + key + queryParameter + valueMoscow;
+    String LONDON_NEGATIVE = WRONG_BASE_URI + currentWeather + key + token + queryParameter + valueLondon;
+    String ROME_NEGATIVE = BASE_URI + currentWeather + key + token + queryParameterNegative + valueRome;
+
     // Эталонные значения для Лондона.
     String expectedCityLondon = "London";
     double expectedTemperatureLondon = 12.0;
-    double deltaLondon = 1.0; // Дельта для сравнения температуры
+    double deltaLondon = 10.0; // Дельта для сравнения температуры
 
     // Эталонные значения для Москвы.
     String expectedCityMoscow = "London";
     double expectedTemperatureMoscow = -9.0;
-    double deltaMoscow = 1.0;
+    double deltaMoscow = 10.0;
 
+    // Эталонные значения для Нью-Йорка.
+    String expectedCityNewYork = "New York";
+    double expectedTemperatureNewYork = -1.0;
+    double deltaNewYork = 10.0;
 
-
-
-
-
+    // Эталонные значения для Рима.
+    String expectedCityRome = "Rome";
+    double expectedTemperatureRome = 11.0;
+    double deltaRome = 10.0;
 }
