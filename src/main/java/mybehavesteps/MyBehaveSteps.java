@@ -6,6 +6,7 @@ import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import org.apache.http.HttpStatus;
 import org.apache.http.impl.bootstrap.HttpServer;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -14,6 +15,8 @@ import service.Service;
 
 import java.io.IOException;
 import java.net.*;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MyBehaveSteps {
 
@@ -24,19 +27,22 @@ public class MyBehaveSteps {
         return actualStatusCode == expectedStatusCode;
     }
 
-    @Given("I am going to request the weather temperature in a specific city")
+    @Given("I am going to request the weather temperature in a specific city.")
     public void givenIRequestWeatherTemperature() {
-        // Действия для данного шага
+        getSpec();
     }
 
-    @When("I request current weather in London")
+    @When("I request current weather in London, Moscow, Rome and New York.")
     public void whenIRequestWeatherInLondon() {
         getCurrentLondonWeather();
+        getCurrentMoscowWeather();
+        getCurrentRomeWeather();
+        getCurrentNewYorkWeather();
     }
 
-    @Then("I should receive a successful response")
+    @Then("I should receive a successful response.")
     public void thenIShouldReceiveSuccessfulResponse() {
-        // Действия для данного шага
+
     }
 
 
