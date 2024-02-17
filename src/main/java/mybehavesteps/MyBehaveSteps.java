@@ -19,10 +19,6 @@ public class MyBehaveSteps {
 
     private int actualStatusCode;
 
-//    public boolean statusCode(int expectedStatusCode) {
-//        return actualStatusCode == expectedStatusCode;
-//    }
-
     public boolean statusCode(int expectedStatusCode) {
         System.out.println("Фактический статус код ответа: " + actualStatusCode);
         return actualStatusCode == expectedStatusCode;
